@@ -1,0 +1,56 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors duration-200;
+  }
+  .sidebar-link {
+    @apply w-full text-left px-4 py-3 text-white hover:bg-primary-600 rounded-lg transition-colors duration-200 font-medium;
+  }
+  .sidebar-link.active {
+    @apply bg-white text-primary-700;
+  }
+    .btn-futuristic {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-xl shadow-lg transition-all duration-300;
+  }
+  .btn-futuristic:hover {
+    @apply brightness-110 scale-105 shadow-xl;
+  }
+  .sidebar-gradient {
+    @apply bg-gradient-to-b from-indigo-600 via-purple-600 to-pink-600 text-white;
+  }
+  .card-futuristic {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 shadow-lg hover:shadow-2xl transition;
+  }
+
+    .check-button {
+    @apply mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors duration-200;
+  }
+  .check-button-completed {
+    @apply bg-green-500 border-green-500 text-white;
+  }
+  .check-button-incomplete {
+    @apply bg-white border-gray-300 text-gray-400 hover:border-green-500 hover:text-green-500;
+  }
+    .input-field {
+    @apply w-full px-4 py-3 border border-white/20 bg-white/5 backdrop-blur-md rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-white placeholder-gray-400;
+  }
+}
