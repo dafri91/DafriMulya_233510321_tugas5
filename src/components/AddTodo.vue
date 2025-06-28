@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full px-4 md:px-8">
+  <div class="w-full px-0 md:px-3">
     <form @submit.prevent="handleSubmit" class="flex gap-3 items-start">
       <textarea v-model="newTodoText" ref="inputRef" @input="autoResize" placeholder="Add a new note or task..."
         rows="1"

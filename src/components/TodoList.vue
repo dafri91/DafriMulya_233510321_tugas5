@@ -1,23 +1,29 @@
 <template>
   <div class="space-y-3">
     <TransitionGroup name="todo" tag="div" class="space-y-3">
-      <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" @toggle="$emit('toggle-todo', todo.id)"
-        @delete="$emit('delete-todo', todo.id)" @edit="$emit('edit-todo', todo.id, $event)" />
+      <TodoItem
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
+        @toggle="$emit('toggle-todo', todo.id)"
+        @delete="$emit('delete-todo', todo.id)"
+        @edit="$emit('edit-todo', todo.id, $event)"
+      />
     </TransitionGroup>
   </div>
 </template>
 
 <script setup>
-import TodoItem from './TodoItem.vue'
+import TodoItem from "./TodoItem.vue";
 
 defineProps({
   todos: {
     type: Array,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-defineEmits(['toggle-todo', 'delete-todo', 'edit-todo'])
+defineEmits(["toggle-todo", "delete-todo", "edit-todo"]);
 </script>
 
 <style scoped>

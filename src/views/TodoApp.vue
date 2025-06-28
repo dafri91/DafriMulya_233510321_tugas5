@@ -7,40 +7,62 @@
       @filter-change="handleFilterChange"
       @close="sidebarOpen = false"
     />
+    <!-- Overlay for Mobile -->
+    <div
+      v-if="sidebarOpen"
+      @click="sidebarOpen = false"
+      class="fixed inset-0 bg-black bg-opacity-70 z-40 sm:hidden transition-opacity duration-300"
+    ></div>
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col bg-gray-50 overflow-hidden">
       <!-- Header with Hamburger -->
-      <header
-        class="flex items-center justify-between bg-gradient-to-b from-blue-600 to-blue-600 text-white px-4 py-3 sm:px-6 sm:py-4"
-      >
-        <button
-          @click="sidebarOpen = !sidebarOpen"
-          class="sm:hidden focus:outline-none"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-        <div>
-          <h1 class="text-xl sm:text-2xl font-bold">{{ getFilterTitle() }}</h1>
-          <p class="text-xs sm:text-sm">{{ getFilterDescription() }}</p>
-        </div>
-      </header>
+<header
+  class="relative bg-gradient-to-b from-blue-600 to-blue-600 text-white px-4 py-5 sm:px-6 sm:py-4"
+>
+  <div class="flex items-center justify-between sm:justify-start">
+    <!-- Hamburger (mobile only) -->
+    <button
+      @click="sidebarOpen = !sidebarOpen"
+      class="sm:hidden focus:outline-none relative z-10"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Desktop title (default) -->
+    <div class="hidden sm:block ml-4">
+      <h1 class="text-2xl font-bold">{{ getFilterTitle() }}</h1>
+      <p class="text-sm">{{ getFilterDescription() }}</p>
+    </div>
+  </div>
+
+  <!-- Absolute centered for mobile only -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center sm:hidden pointer-events-none">
+    <h1 class="text-lg font-bold">{{ getFilterTitle() }}</h1>
+    <p class="text-xs">{{ getFilterDescription() }}</p>
+  </div>
+</header>
+
 
       <!-- Add Todo -->
       <div class="bg-white border-b px-4 py-3 sm:px-6">
         <AddTodo @add-todo="handleAddTodo" />
+
+        <!-- Mobile-only Counts Row -->
+        <div class="mt-3 sm:hidden flex gap-2">
+          <div
+            class="inline-block border border-blue-400 rounded-lg px-3 py-1 text-blue-600 bg-blue-50 shadow-sm text-sm"
+          >
+            {{ totalCount }} total tasks
+          </div>
+          <div
+            class="inline-block border border-blue-400 rounded-lg px-3 py-1 text-blue-600 bg-blue-50 shadow-sm text-sm"
+          >
+            {{ remainingCount }} of {{ totalCount }} tasks remaining
+          </div>
+        </div>
       </div>
 
       <!-- Todo List -->
@@ -77,11 +99,9 @@
 
       <!-- Footer -->
       <div v-if="totalCount > 0" class="bg-white border-t px-4 py-3 sm:px-6">
-        <div
-          class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
-        >
-          <!-- TASK COUNTS GROUP -->
-          <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <!-- TASK COUNTS GROUP (Desktop Only) -->
+          <div class="hidden sm:flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <!-- Total Tasks Box -->
             <div
               class="text-gray-800 bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm sm:text-base w-full sm:w-auto text-center shadow-sm"
@@ -97,7 +117,7 @@
             </div>
           </div>
 
-          <!-- Action Buttons -->
+          <!-- Action Buttons (Always Visible) -->
           <div class="flex gap-2">
             <button
               v-if="remainingCount > 0"
