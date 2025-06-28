@@ -89,8 +89,10 @@
           <!-- Action Buttons (Always Visible) -->
           <!-- Action Buttons (Always Visible) -->
           <div class="flex gap-2
+          bg-white
          sm:static
          fixed bottom-4 left-0 w-full px-4
+         py-2
          sm:w-auto sm:px-0
          sm:bottom-auto
          sm:bg-transparent
