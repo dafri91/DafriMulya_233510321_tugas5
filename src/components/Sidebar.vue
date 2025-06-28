@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="flex items-center justify-between px-5 py-4 ">
       <div>
-        <h2 class="text-2xl font-extrabold tracking-tight">TodoFlow</h2>
+        <h2 class="text-2xl font-extrabold tracking-tight">TodoList</h2>
         <p class="text-[0.75rem] opacity-80">Task Management</p>
       </div>
       <!-- Close button for mobile -->
