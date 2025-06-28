@@ -93,6 +93,7 @@
          sm:static
          fixed bottom-4 left-0 w-full px-4
          py-2
+         mb-0
          sm:w-auto sm:px-0
          sm:bottom-auto
          sm:bg-transparent
